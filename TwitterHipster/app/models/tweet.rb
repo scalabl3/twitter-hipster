@@ -4,12 +4,15 @@ require 'couchbase/model'
 class Tweet < Couchbase::Model
 
   HIPSTER = "rbin"
+  attribute :doctype
   attribute :content
   attribute :tweet_id
   attribute :created
   
   uuid_algorithm :random
-  
+
+  view :by_id, :by_timestamp
+   
   def self.get_latest
     tweets = client.statuses.user_timeline? :screen_name => HIPSTER # hit the API
     tweets.each do |t|
@@ -17,7 +20,7 @@ class Tweet < Couchbase::Model
       tweet_id = t.id_str
       # create the tweet if it doesn't already exist
       unless Tweet.exists?(["tweet_id=?", tweet_id])
-        Tweet.create({:content => t.text, :tweet_id => tweet_id, :created => created })
+        Tweet.create({:doctype => "tweet", :content => t.text, :tweet_id => tweet_id, :created => created.getutc.to_i })
       end
     end
   end
