@@ -7,11 +7,11 @@ common: &common
 
 development:
   <<: *common
-  bucket: twitter_hipster_development
+  bucket: default
 
 test:
   <<: *common
-  bucket: twitter_hipster_test
+  bucket: default
 
 # set these environment variables on your production server
 production:
