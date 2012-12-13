@@ -13,9 +13,9 @@ class Tweet < Couchbase::Model
     tweets = client.statuses.user_timeline? :screen_name => HIPSTER # hit the API
     tweets.each do |t|
       created = DateTime.parse(t.created_at)
-      #unless Tweet.exists?(["created=?", created.to_i])
+        unless Tweet.exists?(["created=?", created.to_i])
         Tweet.create({:content => t.text, :created => created.to_i })
-       #end
+       end
     end
   end
   
