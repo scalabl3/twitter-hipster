@@ -9,6 +9,8 @@ gem 'couchbase', '>= 1.2.0.z.beta3'
 gem 'couchbase-model'
 gem 'masonry-rails'
 gem 'grackle'
+gem 'html2haml'
+gem 'ruby_parser'
 
 
 # Bundle edge Rails instead:
