@@ -5,7 +5,7 @@ gem 'rails', '3.2.9'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
-gem 'couchbase', '>= 1.2.0.z.beta3'
+gem 'couchbase', '>= 1.2.0'
 gem 'couchbase-model'
 gem 'masonry-rails'
 gem 'grackle'

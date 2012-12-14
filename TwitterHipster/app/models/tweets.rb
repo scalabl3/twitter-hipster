@@ -1,7 +1,7 @@
 require 'grackle'
 require 'couchbase/model'
 
-class Tweet < Couchbase::Model
+class Tweets < Couchbase::Model
 
   HIPSTER = "rbin"
   attribute :doctype
@@ -17,11 +17,11 @@ class Tweet < Couchbase::Model
     tweets = client.statuses.user_timeline? :screen_name => HIPSTER # hit the API
     tweets.each do |t|
       created = DateTime.parse(t.created_at)      
-      tweet_id = t.id_str
+      tweet_id = t.id_str.to_i
       # create the tweet if it doesn't already exist
-      unless Tweet.exists?(["tweet_id=?", tweet_id])
-        Tweet.create({:doctype => "tweet", :content => t.text, :tweet_id => tweet_id, :created => created.getutc.to_i })
-      end
+      #unless Tweet.exists?(["tweet_id=?", tweet_id])
+        Tweets.create({:doctype => "tweet", :content => t.text, :tweet_id => tweet_id, :created => created.getutc.to_i })
+      #end
     end
   end
   
@@ -37,3 +37,5 @@ class Tweet < Couchbase::Model
 
   end
 end
+
+Tweets.ensure_design_document!

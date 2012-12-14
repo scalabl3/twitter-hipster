@@ -6,8 +6,9 @@
 // http://www.couchbase.com/docs/couchbase-manual-2.0/couchbase-views-writing-map.html
 
 function(doc, meta) {
+  // list tweets by id
   if (doc.doctype == "tweet" && meta.type == "json") {
-    emit(doc.tweet_id, null);
+    emit(doc.tweet_id, doc.content);
   }
 }
 

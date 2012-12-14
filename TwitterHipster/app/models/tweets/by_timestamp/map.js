@@ -10,7 +10,7 @@ function(doc, meta) {
     var dt = new Date(0);
     dt.setUTCSeconds(doc.created);
     da = dateToArray(dt);
-    emit(dt, doc.content);
+    emit(da, doc.content);
   }
   
 }
