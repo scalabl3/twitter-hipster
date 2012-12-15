@@ -19,9 +19,9 @@ class Tweets < Couchbase::Model
       created = DateTime.parse(t.created_at)      
       tweet_id = t.id_str.to_i
       # create the tweet if it doesn't already exist
-      #unless Tweet.exists?(["tweet_id=?", tweet_id])
-        Tweets.create({:doctype => "tweet", :content => t.text, :tweet_id => tweet_id, :created => created.getutc.to_i })
-      #end
+      unless Tweets.exists?("tw::#{tweet_id}")
+        Tweets.create({:id => "tw::#{tweet_id}", :doctype => "tweet", :content => t.text, :tweet_id => tweet_id, :created => created.getutc.to_i })
+      end
     end
   end
   
@@ -37,5 +37,3 @@ class Tweets < Couchbase::Model
 
   end
 end
-
-Tweets.ensure_design_document!

@@ -136,7 +136,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
-  couchbase (>= 1.2.0.z.beta3)
+  couchbase (>= 1.2.0)
   couchbase-model
   grackle
   html2haml
