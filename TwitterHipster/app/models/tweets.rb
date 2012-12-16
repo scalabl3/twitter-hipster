@@ -13,8 +13,8 @@ class Tweets < Couchbase::Model
 
   view :by_id, :by_timestamp
    
-  def self.get_latest
-    tweets = client.statuses.user_timeline? :screen_name => HIPSTER # hit the API
+  def self.get_timeline
+    tweets = client.statuses.home_timeline? :screen_name => HIPSTER #http://api.twitter.com/1/statuses/home_timeline.json
     tweets.each do |t|
       created = DateTime.parse(t.created_at)      
       tweet_id = t.id_str.to_i
